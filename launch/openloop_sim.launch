@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+
+	<node pkg="synthetic_data" type="synthetic_data_node" name="synthetic_data" output="screen">		
+	</node>
+	
+	<node pkg="flow_model_nathan_05_01_2021" type="flow_model_nathan_05_01_2021_node" name="flow_model_nathan_05_01_2021" output="screen">		
+	</node>
+
+	<node pkg="integrator" type="integrator_node" name="integrator" output="screen">		
+	</node>
+	
+	
+
+</launch>
