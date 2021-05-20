@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+
+	<arg name="max_deltay" default="1.0"/>
+	<arg name="delta_t" default="2.0"/>
+	
+	<param name="/max_deltay" value="$(arg max_deltay)"/>
+	<param name="/delta_t" value="$(arg delta_t)"/>
+	
+	<node pkg="synthetic_data" type="synthetic_data_node" name="synthetic_data" output="screen">		
+		<remap from="vel" to="cmd_vel"/>
+	</node>
+	
+	<node pkg="synthesis_snh" type="synthesis_snh_node" name="synthesis_snh" output="screen">
+	</node>
+
+
+</launch>
