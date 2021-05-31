@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+
+	<arg name="bagfile" default="/home/refulgent/VersionControl/Jmscslgroup/TransferTest/2021-05-04-13-30-23.bag"/>
+	<arg name="veltopic" default="/vel"/>	
+	<arg name="leader" default="leader"/>
+	<arg name="ego" default="ego"/>
+	<arg name="th1" default="1.5"/>
+	<arg name="th2" default="2.0"/>
+	<arg name="th3" default="3.0"/>
+
+	<param name="/$(arg ego)/init_gap" value="0.0"/>
+	<param name="/$(arg ego)/th1" value="$(arg th1)"/>
+	<param name="/$(arg ego)/th2" value="$(arg th2)"/>
+	<param name="/$(arg ego)/th3" value="$(arg th3)"/>
+
+	<arg name="max_deltay" default="1.0"/>
+        <arg name="delta_t" default="1.2"/>
+	<arg name='error_control' default='0.1'/>
+	
+
+        <param name="/$(arg ego)/max_deltay" value="$(arg max_deltay)"/>
+        <param name="/$(arg ego)/delta_t" value="$(arg delta_t)"/>
+
+	<node pkg="rosbag" type="play" name="player" output="screen" args="$(arg bagfile)">
+		<remap from="$(arg veltopic)" to="/leader_vel"/>
+	</node>
+
+	<node pkg="ghostfollower" type="ghostfollower_node" name="ghostfollower_node" output="screen">	
+	
+	</node>	
+
+	<node pkg="velocity_controller" type="velocity_controller_node" name="velocity_controller_node" output="screen">	
+	
+	</node>	
+	
+	
+
+</launch>
