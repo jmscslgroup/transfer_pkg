@@ -2,7 +2,7 @@
 
 <launch>
 
-	<arg name="bagfile" default="/home/refulgent/catvehicle_ws/src/transfer_pkg/launch/start_at_0mph.bag"/>
+	<arg name="bagfile" default="start_at_0mph.bag"/>
 	<arg name="veltopic" default="/ghost/vel"/>	
 	
 	<!--arg name="leader" default="leader"/-->
@@ -25,7 +25,7 @@
         <!--param name="/$(arg ego)/max_deltay" value="$(arg max_deltay)"/>
         <param name="/$(arg ego)/delta_t" value="$(arg delta_t)"/-->
 
-	<node pkg="rosbag" type="play" name="player" output="screen" args="$(arg bagfile)">
+	<node pkg="rosbag" type="play" name="player" output="screen" args="$(find transfer_pkg)/launch/$(arg bagfile) --topics /ghost/vel">
 		<!--remap from="$(arg veltopic)" to="/ghost/cmd_vel"/-->
 	</node>
 	
