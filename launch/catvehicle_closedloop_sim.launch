@@ -18,6 +18,8 @@
 	<arg name="max_deltay" default="1.0"/>
         <arg name="delta_t" default="2.0"/>
 	<arg name='error_control' default='0.5'/>
+	
+	<arg name='hoffman' default='false'/>
 
         <param name="/$(arg ego)/max_deltay" value="$(arg max_deltay)"/>
         <param name="/$(arg ego)/delta_t" value="$(arg delta_t)"/>
@@ -32,7 +34,7 @@
 		<node pkg="odom2float" type="odom2float_node" name="odom2float_$(arg leader)" output="screen">	
 		</node>
 
-		<node pkg="hoffmansubsystem" type="hoffmansubsystem_node" name="hoffmansubsystem_$(arg leader)" output="screen"/>
+		<node pkg="hoffmansubsystem" type="hoffmansubsystem_node" name="hoffmansubsystem_$(arg leader)" output="screen" if="$(arg hoffman)"/>
 		
 	</group>
 
@@ -58,10 +60,12 @@
 		<node pkg="fs_th" type="fs_th_node" name="fs_th_$(arg ego)" output="screen">
 			<remap from="leader_dist_x" to="/$(arg leader)/dist_x"/>
 			<remap from="leader_vel" to="/$(arg leader)/vel"/>
-			<remap from="cmd_vel" to="cmd_control_vel"/>
+			<remap from="cmd_vel" to="cmd_control_vel" if="$(arg hoffman)"/>
 		</node>	
 		
-		<node pkg="hoffmansubsystem" type="hoffmansubsystem_node" name="hoffmansubsystem_$(arg ego)" output="screen"/>
+		<node pkg="hoffmansubsystem" type="hoffmansubsystem_node" name="hoffmansubsystem_$(arg ego)" output="screen" if="$(arg hoffman)">
+		</node>
+
 	</group>
 	
 	
