@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+
+	<arg name="bagfile" default="start_at_0mph.bag"/>
+	<arg name="veltopic" default="/ghost/vel"/>	
+	
+	<!--arg name="leader" default="leader"/-->
+	<!--arg name="ego" default="catvehicle"/-->
+	
+	<arg name='superspeed' default='true'/>
+
+	<arg name="th1" default="0.4"/>
+	<arg name="th2" default="1.0"/>
+	<arg name="th3" default="2.2"/>	
+	<arg name="w1" default="1.0"/>
+
+	<param name="/init_gap" value="30.0"/>
+	<param name="/th1" value="$(arg th1)"/>
+	<param name="/th2" value="$(arg th2)"/>
+	<param name="/th3" value="$(arg th3)"/>
+	<param name="/w1" value="$(arg w1)"/>
+
+	<!--arg name="max_deltay" default="1.0"/>
+        <arg name="delta_t" default="1.2"/>
+	<arg name='error_control' default='0.1'/-->
+	
+
+        <!--param name="/$(arg ego)/max_deltay" value="$(arg max_deltay)"/>
+        <param name="/$(arg ego)/delta_t" value="$(arg delta_t)"/-->
+
+	<node pkg="rosbag" type="play" name="player" output="screen" args="$(find transfer_pkg)/launch/$(arg bagfile) --topics /ghost/vel">
+		<!--remap from="$(arg veltopic)" to="/ghost/cmd_vel"/-->
+	</node>
+	
+	<!--group ns="catvehicle"-->
+	<node pkg="ghostfollower" type="ghostfollower_node" name="ghostfollower_node" output="screen">	
+		<remap from="leader_vel" to ="/ghost/vel"/>
+	</node>	
+
+	<node pkg="velocity_controller" type="velocity_controller_node" name="velocity_controller_node" output="screen">	
+		<remap from="/vehicle/vel" to="/vel"/>	
+	</node>
+	
+	<node pkg="rnd_cmd_vel" type="rnd_cmd_vel_node" name="rnd_cmd_vel" output="screen" if="$(arg superspeed)">
+		<remap from="/cmd_vel" to="/ghost/vel"/>
+		<remap from="/rnd_cmd_vel" to="/v_ref"/>
+	</node>
+
+
+	<node pkg="transfer_pkg" type="saveparam.py" name="saveparam" output="screen">
+	</node>
+	<!--/group-->
+	
+
+</launch>
