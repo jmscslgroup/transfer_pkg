@@ -37,7 +37,10 @@
 
 	<node pkg="velocity_controller" type="velocity_controller_node" name="velocity_controller_node" output="screen">	
 		<remap from="/vehicle/vel" to="/vel"/>	
-	</node>	
+	</node>
+
+	<node pkg="transfer_pkg" type="saveparam.py" name="saveparam" output="screen">
+	</node>
 	<!--/group-->
 	
 
