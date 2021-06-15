@@ -39,11 +39,12 @@ def main(argv):
     
     dt_object = datetime.datetime.fromtimestamp(time.time())
     filename  = dt_object.strftime('%Y-%m-%d-%H-%M-%S-%f')  + '_fieldtest_rosparams.csv'
+    parentfolder = dt_object.strftime('%Y_%m_%d') + '/'
     host = socket.gethostname()
     if host in ['refulgent', 'ivory']:
         filename = '~/.ros/' + filename
     else:
-        filename = '/var/panda/CyverseData/JmscslgroupData/bagfiles/' + filename
+        filename = '/var/panda/CyverseData/JmscslgroupData/bagfiles/' + parentfolder + filename
     
     df.index.name  = 'ParameterName'
     print(df)
