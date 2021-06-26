@@ -30,10 +30,8 @@ def main(argv):
     
     
     for p in params:
-        print(p)
         val = rospy.get_param(p)
         param_dict[p] = val
-        print(val)
 
     df = pd.DataFrame.from_dict(param_dict, orient='index', columns=['ParameterValue'])
     
