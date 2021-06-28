@@ -6,10 +6,11 @@
 
 import sys
 import rospy
-import pandas as pd
+import csv
 import time
 import datetime
 import socket
+from os.path import expanduser
 
 class saveparam:
     def __init__(self, ns):
@@ -28,25 +29,36 @@ def main(argv):
     
     param_dict = {}
     
+    param_list = []
+    val_list = []
     
     for p in params:
+        param_list.append(p)
         val = rospy.get_param(p)
-        param_dict[p] = val
-
-    df = pd.DataFrame.from_dict(param_dict, orient='index', columns=['ParameterValue'])
+        val_list.append(val)
     
     dt_object = datetime.datetime.fromtimestamp(time.time())
     filename  = dt_object.strftime('%Y-%m-%d-%H-%M-%S-%f')  + '_fieldtest_rosparams.csv'
     parentfolder = dt_object.strftime('%Y_%m_%d') + '/'
     host = socket.gethostname()
+    
+    home = expanduser("~")
+
     if host in ['refulgent', 'ivory']:
-        filename = '~/.ros/' + filename
+        filename = home  +'/.ros/' + filename
     else:
         filename = '/var/panda/CyverseData/JmscslgroupData/bagfiles/' + parentfolder + filename
     
-    df.index.name  = 'ParameterName'
-    print(df)
-    df.to_csv(filename)
+    print(filename)
+    with open(filename, 'w') as csvfile: 
+        # creating a csv writer object 
+        csvwriter = csv.writer(csvfile) 
+        
+        # writing the fields 
+        csvwriter.writerow(param_list) 
+        
+        # writing the data rows 
+        csvwriter.writerow(val_list)
 
 if __name__ == '__main__':
     main(sys.argv[1:])

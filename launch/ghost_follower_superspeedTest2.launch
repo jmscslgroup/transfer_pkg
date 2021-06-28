@@ -4,6 +4,8 @@
 
 	<arg name="bagfile" default="start_at_0mph.bag"/>
 	<arg name="veltopic" default="/ghost/vel"/>	
+	<arg name="description" default="Running GhostFollower Super Speed Test 2"/>
+	<param name="description" value="$(arg description)"/>
 	
 	<!--arg name="leader" default="leader"/-->
 	<!--arg name="ego" default="catvehicle"/-->
