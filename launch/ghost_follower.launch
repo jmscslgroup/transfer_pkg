@@ -4,6 +4,7 @@
 
 	<arg name="bagfile" default="start_at_0mph.bag"/>
 	<arg name="veltopic" default="/ghost/vel"/>	
+	 <arg name="description" default="_ghostfollower"/>
 	
 	<!--arg name="leader" default="leader"/-->
 	<!--arg name="ego" default="catvehicle"/-->
@@ -38,6 +39,8 @@
 	<node pkg="velocity_controller" type="velocity_controller_node" name="velocity_controller_node" output="screen">	
 		<remap from="/vehicle/vel" to="/vel"/>	
 	</node>
+
+	<node pkg="can_to_ros" type ="rosbag_record.sh" name="bashscript2" output="screen" args="$(arg description)" /> 
 
 	<node pkg="transfer_pkg" type="saveparam.py" name="saveparam" output="screen">
 	</node>
