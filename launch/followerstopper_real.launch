@@ -2,7 +2,7 @@
 
 <launch>
 
-	<arg name="description" default="Running Follower With Timeheadway"/>
+	<arg name="description" default="following_real_vehicle_FSth"/>
 	
 	<arg name="th1" default="0.4"/>
 	<arg name="th2" default="1.2"/>
@@ -29,6 +29,7 @@
 		<remap from="/vehicle/vel" to="/vel"/>	
 	</node>
 	
+	<node pkg="can_to_ros" type ="rosbag_record.sh" name="bashscript2" output="screen" args="$(arg description)" /> 
 
 	<node pkg="transfer_pkg" type="saveparam.py" name="saveparam" output="screen">
 	</node>
