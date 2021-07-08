@@ -7,9 +7,10 @@
 	<arg name="th1" default="0.4"/>
 	<arg name="th2" default="1.2"/>
 	<arg name="th3" default="1.8"/>	
-	<arg name="w1" default="24.5"/>
-	<arg name="w2" default="26.0"/>
-	<arg name="w3" default="25.5"/>
+	<arg name="w1" default="4.5"/>
+	<arg name="w2" default="6.0"/>
+	<arg name="w3" default="5.25"/>
+	<arg name="margin" default="30.0"/>
 
 	<param name="/init_gap" value="30.0"/>
 	<param name="/th1" value="$(arg th1)"/>
@@ -18,6 +19,7 @@
 	<param name="/w1" value="$(arg w1)"/>
 	<param name="/w2" value="$(arg w2)"/>
 	<param name="/w3" value="$(arg w3)"/>
+	<param name="/margin" value="$(arg margin)"/>
 	<param name="description" value="$(arg description)"/>
 
 
