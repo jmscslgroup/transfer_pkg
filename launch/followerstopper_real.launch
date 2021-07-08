@@ -11,6 +11,7 @@
 	<arg name="w2" default="6.0"/>
 	<arg name="w3" default="5.25"/>
 	<arg name="margin" default="30.0"/>
+	<arg name="use_margin" default="false"/>
 
 	<param name="/init_gap" value="30.0"/>
 	<param name="/th1" value="$(arg th1)"/>
@@ -24,7 +25,11 @@
 
 
 	<!--group ns="catvehicle"-->
+	<node pkg="margin" type="margin_node" name="margin_node" output="screen" if="$(arg use_margin)">
+	
+	</node>
 	<node pkg="followerstoperth" type="followerstoperth_node" name="followerstoperth_node" output="screen">	
+		<remap from="lead_dist" to="effective_lead_dist" if="$(arg use_margin)"/>		i
 	</node>	
 
 	<node pkg="velocity_controller" type="velocity_controller_node" name="velocity_controller_node" output="screen">	
