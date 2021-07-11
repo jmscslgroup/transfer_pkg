@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+
+	<arg name="description" default="following_real_vehicle_FSth"/>
+	
+	<arg name="th1" default="0.4"/>
+	<arg name="th2" default="1.2"/>
+	<arg name="th3" default="1.8"/>	
+	<arg name="w1" default="4.5"/>
+	<arg name="w2" default="6.0"/>
+	<arg name="w3" default="5.25"/>
+	<arg name="margin" default="30.0"/>
+	<arg name="use_margin" default="false"/>
+
+	<param name="/init_gap" value="30.0"/>
+	<param name="/th1" value="$(arg th1)"/>
+	<param name="/th2" value="$(arg th2)"/>
+	<param name="/th3" value="$(arg th3)"/>
+	<param name="/w1" value="$(arg w1)"/>
+	<param name="/w2" value="$(arg w2)"/>
+	<param name="/w3" value="$(arg w3)"/>
+	<param name="/margin" value="$(arg margin)"/>
+	<param name="description" value="$(arg description)"/>
+
+
+	<!--group ns="catvehicle"-->
+	<node pkg="margin" type="margin_node" name="margin_node" output="screen" if="$(arg use_margin)">
+	
+	</node>
+	<node pkg="followerstopermax" type="followerstopermax_node" name="followerstopermax_node" output="screen">	
+		<remap from="lead_dist" to="effective_lead_dist" if="$(arg use_margin)"/>		i
+	</node>	
+
+	<node pkg="velocity_controller" type="velocity_controller_node" name="velocity_controller_node" output="screen">	
+		<remap from="/vehicle/vel" to="/vel"/>	
+	</node>
+	
+	<node pkg="can_to_ros" type ="rosbag_record.sh" name="bashscript2" output="screen" args="$(arg description)" /> 
+
+	<node pkg="transfer_pkg" type="saveparam.py" name="saveparam" output="screen">
+	</node>
+	
+
+</launch>
