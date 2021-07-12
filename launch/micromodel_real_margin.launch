@@ -2,7 +2,7 @@
 
 <launch>
 
-	<arg name="description" default="following_real_vehicle micromodel controller - With Margin"/>
+	<arg name="description" default="following_real_vehicle_micromodel_margin"/>
 	
 	<arg name="th1" default="0.4"/>
 	<arg name="th2" default="1.2"/>
@@ -29,7 +29,7 @@
 	</node>
 
 	<node pkg="micromodel" type="micromodel_node" name="micromodel_node" output="screen">	
-		<remap from="lead_dist" to="effective_lead_dist" if="$(arg use_margin)"/>		i
+		<remap from="lead_dist" to="effective_lead_dist" if="$(arg use_margin)"/>
 	</node>	
 
 	<node pkg="velocity_controller" type="velocity_controller_node" name="velocity_controller_node" output="screen">	

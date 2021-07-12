@@ -2,7 +2,7 @@
 
 <launch>
 
-	<arg name="description" default="following_real_vehicle rl controller rl0705 - no margin"/>
+	<arg name="description" default="following_real_vehicle_rl0705_margin"/>
 	
 	<arg name="margin" default="30.0"/>
 	<arg name="use_margin" default="true"/>
@@ -20,7 +20,7 @@
 	
 	</node>
 	<node pkg="trajectory_07_05_2021_real" type="trajectory_07_05_2021_real_node" name="trajectory_07_05_2021_real_node" output="screen">	
-		<remap from="lead_dist" to="effective_lead_dist" if="$(arg use_margin)"/>		i
+		<remap from="lead_dist" to="effective_lead_dist" if="$(arg use_margin)"/>
 	</node>	
 
 	<node pkg="velocity_controller" type="velocity_controller_node" name="velocity_controller_node" output="screen">	

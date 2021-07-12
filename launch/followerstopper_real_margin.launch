@@ -28,8 +28,13 @@
 	<node pkg="margin" type="margin_node" name="margin_node" output="screen" if="$(arg use_margin)">
 	
 	</node>
+<<<<<<< HEAD
 	<node pkg="followerstopperth" type="followerstopperth_node" name="followerstopperth_node" output="screen">	
 		<remap from="lead_dist" to="effective_lead_dist" if="$(arg use_margin)"/>		i
+=======
+	<node pkg="followerstoperth" type="followerstoperth_node" name="followerstoperth_node" output="screen">	
+		<remap from="lead_dist" to="effective_lead_dist" if="$(arg use_margin)"/>
+>>>>>>> 5a531ae1a4d1eebcb56f400b79cf3d8617c0e87d
 	</node>	
 
 	<node pkg="velocity_controller" type="velocity_controller_node" name="velocity_controller_node" output="screen">	
