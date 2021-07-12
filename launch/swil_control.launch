@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+
+	<arg name="leader" default="leader"/>
+	<arg name="ego" default="ego"/>
+	<arg name="bagfile" default="start_at_0mph.bag"/>
+
+	<arg name="csvfile" default="/home/ivory/CyverseData/JmscslgroupData/ARED/2016-07-28/data_by_test/CSVData/test5/test5_01.csv"/>
+	<arg name="time_col" default="Time"/>
+	<arg name="vel_col" default="Velocity"/>
+	<arg name="str_angle" default="0.0"/>
+	<arg name="input_type" default="CSV"/>
+	<arg name="controller" default="micromodelswil"/>
+	
+	<arg name="th1" default="0.4"/>
+        <arg name="th2" default="1.2"/>
+	<arg name="th3" default="1.8"/>
+        <arg name="w1" default="4.5"/>
+  
+        <param name="/$(arg ego)/th1" value="$(arg th1)"/>
+        <param name="/$(arg ego)/th2" value="$(arg th2)"/>
+        <param name="/$(arg ego)/th3" value="$(arg th3)"/>
+        <param name="/$(arg ego)/w1" value="$(arg w1)"/>
+
+
+	<param name="/$(arg ego)/init_gap" value="0.0"/>
+	<param name="/$(arg leader)/init_gap" value="30.0"/>
+
+	<arg name='hoffman' default='true'/>
+
+	<group ns="$(arg leader)">
+
+		<!--node pkg="transfer_pkg" type="velinjector.py" name="velinjector_$(arg leader)" output="screen" required="true" args="$(arg csvfile) $(arg time_col) $(arg vel_col) $(arg str_angle) $(arg input_type)">
+			<remap from="cmd_vel" to="cmd_control_vel" if="$(arg hoffman)"/>
+		</node-->
+
+		<!--node pkg="synthetic_data" type="synthetic_data_node" name="synthetic_data_$(arg leader)" output="screen">
+        	        <remap from="vel" to="cmd_vel" unless="$(arg hoffman)"/>
+			<remap from="vel" to="cmd_control_vel" if="$(arg hoffman)"/>
+	        </node-->
+
+		<node pkg="rosbag" type="play" name="player" output="screen" args="$(find transfer_pkg)/launch/$(arg bagfile) --topics /ghost/vel">
+			<remap from="/ghost/vel" to="cmd_vel" unless="$(arg hoffman)"/>
+			<remap from="/ghost/vel" to="cmd_control_vel" if="$(arg hoffman)"/>
+		</node>
+
+		<node pkg="odom2float" type="odom2float_node" name="odom2float_$(arg leader)" output="screen">
+		</node>
+                <node pkg="hoffmansubsystem" type="hoffmansubsystem_node" name="hoffmansubsystem_$(arg leader)" output="screen" if="$(arg hoffman)"/>
+	
+	</group>
+
+	<group ns="$(arg ego)">
+		<node pkg="$(arg controller)" type="$(arg controller)_node" name="$(arg controller)_$(arg ego)" output="screen">		
+			<remap from="leader_vel" to="/$(arg leader)/vel"/>
+			<remap from="leader_dist_x" to="/$(arg leader)/dist_x"/>
+			<remap from="cmd_vel" to="cmd_control_vel" if="$(arg hoffman)"/>
+
+		</node>
+
+		<node pkg="odom2float" type="odom2float_node" name="odom2float_$(arg ego)" output="screen">
+		</node>
+
+		<node pkg="hoffmansubsystem" type="hoffmansubsystem_node" name="hoffmansubsystem_$(arg ego)" output="screen" if="$(arg hoffman)"/>
+
+
+	</group>
+	
+	
+
+</launch>
