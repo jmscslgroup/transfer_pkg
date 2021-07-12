@@ -25,9 +25,9 @@
 
 
 	<!--group ns="catvehicle"-->
-	<node pkg="margin" type="margin_node" name="margin_node" output="screen" if="$(arg use_margin)">
-	
+	<node pkg="margin" type="margin_node" name="margin_node" output="screen" if="$(arg use_margin)">	
 	</node>
+
 	<node pkg="micromodel" type="micromodel_node" name="micromodel_node" output="screen">	
 		<remap from="lead_dist" to="effective_lead_dist" if="$(arg use_margin)"/>		i
 	</node>	
