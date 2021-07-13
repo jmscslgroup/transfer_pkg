@@ -11,7 +11,7 @@
 	<arg name="w2" default="6.0"/>
 	<arg name="w3" default="5.25"/>
 	<arg name="margin" default="30.0"/>
-	<arg name="use_margin" default="true`"/>
+	<arg name="use_margin" default="true"/>
 
 	<param name="/init_gap" value="30.0"/>
 	<param name="/th1" value="$(arg th1)"/>
