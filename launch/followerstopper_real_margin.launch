@@ -24,6 +24,12 @@
 	<param name="description" value="$(arg description)"/>
 
 
+	<node pkg="can_to_ros" type ="subs_fs" name="subs_fs" output="screen" /> 
+
+	<node pkg="can_to_ros" type="lead_info" name="lead_info" output="screen" />
+
+	<node pkg="can_to_ros" type="node_status.py" name="node_status" output="screen" />
+
 	<!--group ns="catvehicle"-->
 	<node pkg="margin" type="margin_node" name="margin_node" output="screen" if="$(arg use_margin)">
 	
