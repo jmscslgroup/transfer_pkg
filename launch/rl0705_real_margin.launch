@@ -9,6 +9,7 @@
 	<arg name="SPEED_SCALE" default="40.0"/>	
 	<arg name="HEADWAY_SCALE" default="100.0"/>	
 	<arg name="enable_fs" default="false"/>
+	<arg name="hwil" default="false"/>
 
 	<param name="/margin" value="$(arg margin)"/>
 	<arg name="/SPEED_SCALE" default="$(arg SPEED_SCALE)"/>	
@@ -35,7 +36,7 @@
                 <remap from="lead_dist" to="effective_lead_dist" if="$(arg use_margin)"/>
         </node>	
 
-	<node pkg="velocity_controller" type="velocity_controller_node" name="velocity_controller_node" output="screen">	
+	<node pkg="velocity_controller" type="velocity_controller_node" name="velocity_controller_node" output="screen" if="$(arg hwil)">	
 		<remap from="/vehicle/vel" to="/vel"/>	
 	</node>
 	
