@@ -74,7 +74,7 @@ roslaunch transfer_pkg default_swil.launch bagfile:=start_at_0mph.bag
 ```
 `default_swil.launch` starts ROS-Gazebo simulation with two vehicle separated at 30 m (minus the lenght of vehicle) apart. A LiDAR mounted on the front bumper of the ego car measures its current distance from the leader vehicle at the rate of 20 Hz. Bag files are used to impart velocity profile to the leader car. The list of available bag files are available at https://github.com/jmscslgroup/transfer_pkg. Only the filename of the bag file needs to be supplied and **NOT** the full path. If you need to add more bagfiles, place them in the launch subdirectory of `transfer_pkg`. 
 
-_**Terminal 2: **_
+_**Terminal 2:**_
 ```
 roslaunch transfer_pkg test.launch test:=followerstopperth
 ```
