@@ -21,7 +21,6 @@ class saveparam:
 
 def main(argv):
     
-
     print("In Save param")
     rospy.init_node('saveparam', anonymous=True)
     ns = rospy.get_namespace() # Retrieve the name space
@@ -38,14 +37,14 @@ def main(argv):
         val_list.append(val)
     
     dt_object = datetime.datetime.fromtimestamp(time.time())
-    filename  = dt_object.strftime('%Y-%m-%d-%H-%M-%S-%f')  + '_fieldtest_rosparams.csv'
+    filename  = dt_object.strftime('%Y_%m_%d_%H_%M_%S')  + '_rosparams_' + argv[0] + '.csv'
     parentfolder = dt_object.strftime('%Y_%m_%d') + '/'
     host = socket.gethostname()
     
     home = expanduser("~")
 
     if host in ['refulgent', 'ivory']:
-        filename = home  +'/.ros/' + filename
+        filename = home  +'/.ros/' + parentfolder + filename
     else:
         filename = '/var/panda/CyverseData/JmscslgroupData/bagfiles/' + parentfolder + filename
     

@@ -2,7 +2,7 @@
 
 <launch>
 
-	<arg name="description" default="following_real_vehicle_FSth"/>
+	<arg name="description" default="following_real_vehicle_FSth_margin"/>
 	
 	<arg name="th1" default="0.4"/>
 	<arg name="th2" default="1.2"/>
@@ -11,10 +11,9 @@
 	<arg name="w2" default="6.0"/>
 	<arg name="w3" default="5.25"/>
 	<arg name="margin" default="30.0"/>
-	<arg name="use_margin" default="false"/>
+	<arg name="use_margin" default="true"/>
 	<arg name="hwil" default="false"/>
 
-	<param name="/init_gap" value="30.0"/>
 	<param name="/th1" value="$(arg th1)"/>
 	<param name="/th2" value="$(arg th2)"/>
 	<param name="/th3" value="$(arg th3)"/>
@@ -25,11 +24,11 @@
 	<param name="description" value="$(arg description)"/>
 
 
-	<node pkg="can_to_ros" type ="subs_fs" name="subs_fs" output="screen" /> 
+	<node pkg="can_to_ros" type ="subs_fs" name="subs_fs" output="screen" if="$(arg hwil)" /> 
 
-	<node pkg="can_to_ros" type="lead_info" name="lead_info" output="screen" />
+	<node pkg="can_to_ros" type="lead_info" name="lead_info" output="screen" if="$(arg hwil)"/>
 
-	<node pkg="can_to_ros" type="node_status.py" name="node_status" output="screen" />
+	<node pkg="can_to_ros" type="node_status.py" name="node_status" output="screen" if="$(arg hwil)"/>
 
 	<!--group ns="catvehicle"-->
 	<node pkg="margin" type="margin_node" name="margin_node" output="screen" if="$(arg use_margin)">
@@ -43,9 +42,9 @@
 		<remap from="/vehicle/vel" to="/vel"/>	
 	</node>
 	
-	<node pkg="can_to_ros" type ="rosbag_record.sh" name="bashscript2" output="screen" args="$(arg description)" /> 
+	<node pkg="can_to_ros" type ="rosbag_record.sh" name="bashscript2" output="screen" args="$(arg description) $(arg hwil)" /> 
 
-	<node pkg="transfer_pkg" type="saveparam.py" name="saveparam" output="screen">
+	<node pkg="transfer_pkg" type="saveparam.py" name="saveparam" output="screen" args="$(arg description)">
 	</node>
 	
 

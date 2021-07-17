@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+	<include file="$(find steer)/launch/leader_ego.launch"/>
+
+	<arg name="bagfile" default="start_at_0mph.bag"/>
+
+	<arg name='hoffman' default='true'/>
+	
+	<include file="$(find transfer_pkg)/launch/swil_leader.launch">
+                <arg name="bagfile" value="$(arg bagfile)"/>
+                <arg name="hoffman" value="$(arg hoffman)"/>
+	</include>
+
+
+
+
+</launch>
