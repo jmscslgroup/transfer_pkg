@@ -43,7 +43,7 @@ def main(argv):
     
     home = expanduser("~")
 
-    if host in ['refulgent', 'ivory']:
+    if argv[1] == "false":
         filename = home  +'/.ros/' + parentfolder + filename
     else:
         filename = '/var/panda/CyverseData/JmscslgroupData/bagfiles/' + parentfolder + filename

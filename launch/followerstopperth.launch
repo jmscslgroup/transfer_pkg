@@ -44,7 +44,7 @@
 	
 	<node pkg="can_to_ros" type ="rosbag_record.sh" name="bashscript2" output="screen" args="$(arg description) $(arg hwil)" /> 
 
-	<node pkg="transfer_pkg" type="saveparam.py" name="saveparam" output="screen">
+	<node pkg="transfer_pkg" type="saveparam.py" name="saveparam" output="screen" args="$(arg description) $(arg hwil)">
 	</node>
 	
 

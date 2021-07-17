@@ -15,8 +15,6 @@
 			<remap from="/ghost/vel" to="cmd_control_vel" if="$(arg hoffman)"/>
 		</node>
 
-		<node pkg="odom2float" type="odom2float_node" name="odom2float_$(arg leader)" output="screen">
-		</node>
                 <node pkg="hoffmansubsystem" type="hoffmansubsystem_node" name="hoffmansubsystem_$(arg leader)" output="screen" if="$(arg hoffman)"/>
 	</group>
 
