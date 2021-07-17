@@ -11,6 +11,8 @@ The first prerequisite for the transfer test of the controller is `libpanda`. Se
 Clone the libpanda in your /opt folder
 ```
 sudo apt-get install libusb-1.0-0-dev
+sudo apt-get install libncurses5-dev
+
 cd /opt
 sudo git clone https://github.com/jmscslgroup/libpanda
 cd libpanda
