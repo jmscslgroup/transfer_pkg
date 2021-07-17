@@ -53,7 +53,7 @@ catkin_make
 ```
 
 
-## Testing controllers in SWIL
+# Testing controllers in SWIL
 There are a number of controllers that can be tested. The available controllers to be tested are enumerated below. They will be updated as we have more controllers to be tested:
 
 1. **followerstopperth**
@@ -98,6 +98,22 @@ You can launch gazebo client to visualize the simulation.
 
 Once you are done with the test, you can terminate the test by pressing Ctrl-C in each of the three terminals mentioned above. The bagfile and csvfile for this test will be availble in a time-stamped subdirectory of the directory `~/.ros`.
 
+# Testing controller in HWIL
+
+We will first be preparing Raspberry PI for HWIL testing
+
+< Steps Inserted by Safewan >
+
+Then in another terminal, we will start the start:
+
+
+```
+roslaunch transfer_pkg test.launch test:=followerstopperth hwil:=true
+```
+or 
+```
+roslaunch transfer_pkg test.launch test:=1 hwil:=true
+```
 
 
 
