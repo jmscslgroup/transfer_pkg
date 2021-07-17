@@ -68,13 +68,13 @@ There are a number of controllers that can be tested. The available controllers 
 
 Following steps can be taken to test the available controller:
 
-Terminal 1:
+_**Terminal 1:**_
 ```
 roslaunch transfer_pkg default_swil.launch bagfile:=start_at_0mph.bag
 ```
 `default_swil.launch` starts ROS-Gazebo simulation with two vehicle separated at 30 m (minus the lenght of vehicle) apart. A LiDAR mounted on the front bumper of the ego car measures its current distance from the leader vehicle at the rate of 20 Hz. Bag files are used to impart velocity profile to the leader car. The list of available bag files are available at https://github.com/jmscslgroup/transfer_pkg. Only the filename of the bag file needs to be supplied and **NOT** the full path. If you need to add more bagfiles, place them in the launch subdirectory of `transfer_pkg`. 
 
-Terminal 2: 
+_**Terminal 2: **_
 
 ```
 roslaunch transfer_pkg test.launch test:=followerstopperth
@@ -88,7 +88,7 @@ roslaunch transfer_pkg test.launch test:=1
 
 The test can be chosed from the enumerated list given above. You can either pass the number as value of the argument `test` or its name, for example `rl0705`. The `test.launch` will start launch files corresponding the test ID or test name provided through the roslaunch commandline argument. The `test.launch` also starts `rosbag record` to record ros messages in a time-stamped subdirectory of the directory ~/.ros/ along with a csv file that contains all values ros parameters. 
 
-Terminal 3:
+_**Terminal 3:**_
 ```
 gzclient
 ```
