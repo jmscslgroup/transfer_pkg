@@ -27,10 +27,7 @@
         <param name="/$(arg ego)/delta_t" value="$(arg delta_t)"/-->
 
 
-	<node pkg="can_to_ros" type ="subs" name="subs" output="screen" /> 
-
-	<node pkg="can_to_ros" type="node_status.py" name="node_status" output="screen" />	
-
+	<node pkg="can_to_ros" type ="subs_fs" name="subs_fs" output="screen" />
 
 	<node pkg="rosbag" type="play" name="player" output="screen" args="$(find transfer_pkg)/launch/$(arg bagfile) --topics /ghost/vel">
 		<!--remap from="$(arg veltopic)" to="/ghost/cmd_vel"/-->
@@ -44,9 +41,10 @@
 
 	<node pkg="velocity_controller" type="velocity_controller_node" name="velocity_controller_node" output="screen">	
 		<remap from="/vehicle/vel" to="/vel"/>	
+		<remap from="/cmd_vel" to="/ghost/vel"/>
 	</node>
 
-	<node pkg="can_to_ros" type ="rosbag_record.sh" name="bashscript2" output="screen" args="$(arg description)" /> 
+	<node pkg="can_to_ros" type ="rosbag_record_gm.sh" name="bashscript3" output="screen" args="$(arg description)" /> 
 
 	<node pkg="transfer_pkg" type="saveparam.py" name="saveparam" output="screen">
 	</node>

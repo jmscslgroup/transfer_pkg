@@ -100,14 +100,26 @@ Once you are done with the test, you can terminate the test by pressing Ctrl-C i
 
 # Testing controller in HWIL
 
-We will first be preparing Raspberry PI for HWIL testing
+Preparing the vehicle for testing:
+* Turn on car
+* Ensure that cruise control is off
+* Run ```ssh circles@10.0.1.1 ``` to connect to the Raspberry PI.
+* Stop libpanda recording, Run: ```sudo systemctl stop pandarecord```
+    *  Optional: to stop this automatically on each boot, run: ```sudo systemctl disable pandarecord```
+* to turn off the can service:
+	* ```sudo systemctl stop can```
+* Run ```sudo su```
+* Run ```cd ~/catkin_ws && source devel/setup.bash```
+* Run ```roslaunch can_to_ros vehicle_control.launch```
 
-< Steps Inserted by Safewan >
 
-Then in another terminal, we will start the start:
+Then in another terminal ssh to the PI and type:
 
 
 ```
+sudo su
+cd catkin_ws
+source ./devel/setup.bash
 roslaunch transfer_pkg test.launch test:=followerstopperth hwil:=true
 ```
 or 
