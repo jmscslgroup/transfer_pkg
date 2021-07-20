@@ -117,6 +117,9 @@ Then in another terminal ssh to the PI and type:
 
 
 ```
+sudo su
+cd catkin_ws
+source ./devel/setup.bash
 roslaunch transfer_pkg test.launch test:=followerstopperth hwil:=true
 ```
 or 
