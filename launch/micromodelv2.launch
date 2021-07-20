@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+
+	<arg name="description" default="following_real_vehicle_micromodelv2"/>
+	
+	<arg name="th1" default="0.4"/>
+	<arg name="th2" default="1.2"/>
+	<arg name="th3" default="1.8"/>	
+	<arg name="w1" default="4.5"/>
+	<arg name="w2" default="6.0"/>
+	<arg name="w3" default="5.25"/>
+	<arg name="margin" default="30.0"/>
+	<arg name="use_margin" default="false"/>
+	<arg name="hwil" default="false"/>
+	<arg name='hoffman' default='false'/>
+	<arg name='gap_variant' default='true'/>
+
+	<param name="/th1" value="$(arg th1)"/>
+	<param name="/th2" value="$(arg th2)"/>
+	<param name="/th3" value="$(arg th3)"/>
+	<param name="/w1" value="$(arg w1)"/>
+	<param name="/w2" value="$(arg w2)"/>
+	<param name="/w3" value="$(arg w3)"/>
+	<param name="/gap_variant" value="$(arg gap_variant)"/>
+	<param name="/margin" value="$(arg margin)"/>
+	<param name="description" value="$(arg description)"/>
+
+	<node pkg="can_to_ros" type ="subs_fs" name="subs_fs" output="screen" if="$(arg hwil)" /> 
+
+	<node pkg="can_to_ros" type="lead_info" name="lead_info" output="screen" if="$(arg hwil)" />
+
+	<node pkg="can_to_ros" type="node_status.py" name="node_status" output="screen" if="$(arg hwil)" />
+	
+	<!--group ns="catvehicle"-->
+	<node pkg="margin" type="margin_node" name="margin_node" output="screen" if="$(arg use_margin)">
+	
+	</node>
+	<node pkg="micromodelv2" type="micromodelv2_node" name="micromodelv2_node" output="screen">	
+		<remap from="lead_dist" to="effective_lead_dist" if="$(arg use_margin)"/>
+		<remap from="/cmd_vel" to ="/cmd_control_vel" if="$(eval arg('hoffman') == True and arg('hwil') == False )"/>
+	</node>	
+	
+	<node pkg="hoffmansubsystem" type="hoffmansubsystem_node" name="hoffmansubsystem_ego" output="screen" if="$(arg hoffman)"/>
+	
+	<node pkg="velocity_controller" type="velocity_controller_node" name="velocity_controller_node" output="screen" if="$(arg hwil)">	
+		<remap from="/vehicle/vel" to="/vel"/>	
+	</node>
+	
+	<node pkg="can_to_ros" type ="rosbag_record.sh" name="bashscript2" output="screen" args="$(arg description) $(arg hwil)" /> 
+
+	<node pkg="transfer_pkg" type="saveparam.py" name="saveparam" output="screen" args="$(arg description) $(arg hwil)">
+	</node>
+	
+
+</launch>
