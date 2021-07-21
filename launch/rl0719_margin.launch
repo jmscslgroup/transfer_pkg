@@ -2,10 +2,10 @@
 
 <launch>
 
-	<arg name="description" default="following_real_vehicle_rl0719"/>
+	<arg name="description" default="following_real_vehicle_rl0719_with_margin"/>
 	
 	<arg name="margin" default="30.0"/>
-	<arg name="use_margin" default="false"/>
+	<arg name="use_margin" default="true"/>
 	<arg name="SPEED_SCALE" default="1.0"/>	
 	<arg name="HEADWAY_SCALE" default="1.0"/>
 	<arg name="enable_fs" default="false"/>
