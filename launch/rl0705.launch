@@ -20,7 +20,7 @@
 	<param name="/margin" value="$(arg margin)"/>
 	<param name="/SPEED_SCALE" value="$(arg SPEED_SCALE)"/>	
 	<param name="/HEADWAY_SCALE" value="$(arg HEADWAY_SCALE)"/>	
-	<param name="description" value="$(arg description)"/>
+	<param name="description" value="$(arg description)_enable_$(arg enable_fs)"/>
 
 		
 	<param name="/th1" value="$(arg th1)"/>

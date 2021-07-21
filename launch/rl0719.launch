@@ -26,7 +26,7 @@
 	<param name="model" type="string" value="$(find onnx2ros)/../controllers/19Jul21_RL_accel_output/19Jul21_RL_accel_output.onnx"/>
         <param name="mode" type="string" value="prompt"/>
 	<param name="/margin" value="$(arg margin)"/>
-	<param name="description" value="$(arg description)"/>
+	<param name="description" value="$(arg description)_enable_$(arg enable_fs)"/>
 	<param name="SPEED_SCALE" value="$(arg SPEED_SCALE)"/>
 	<param name="HEADWAY_SCALE" value="$(arg HEADWAY_SCALE)"/>
         <param name="ego_vel_topic" value="$(arg ego_veltopic)"/>
