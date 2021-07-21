@@ -2,7 +2,7 @@
 
 <launch>
 
-	<arg name="description" default="following_real_vehicle_micromodelv2"/>
+	<arg name="description" default="following_real_vehicle_micromodelv2_without_margin"/>
 	
 	<arg name="th1" default="0.4"/>
 	<arg name="th2" default="1.2"/>

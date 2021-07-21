@@ -61,7 +61,7 @@
    	</node>
 	
 
-	<node pkg="followerstoppermax4rl" type="followerstoppermax4rl_node" name="followerstoppermax4rl_node" output="screen" if="$(arg enable_fs)">
+	<node pkg="followerstopperth4rl" type="followerstopperth4rl_node" name="followerstopperth4rl_node" output="screen" if="$(arg enable_fs)">
 		<remap from="lead_dist" to="effective_lead_dist" if="$(arg use_margin)"/>
 		<remap from="/cmd_vel" to ="/cmd_control_vel" if="$( eval arg('hoffman') == True and arg('hwil') == False)"/> 
         </node>	

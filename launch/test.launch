@@ -11,7 +11,8 @@
         <arg name="w3" default="5.25"/>
         <arg name="margin" default="30.0"/>
         <arg name="hwil" default="false"/>
-	
+        <arg name="T" default="0.6"/>	
+	<arg name='gap_variant' default='true'/>
 
 	<arg name="test" default="followerstopperth"/>
 
@@ -20,12 +21,10 @@
 		2. followerstopperth_margin
 		3. followerstoppermax
 		4. followerstoppermax_margin
-		5. micromodel
-		6. mocromodel_margin
-		7. rl0705
-		8. rl0705_margin
-		9. rl0705_fs = rl controller with followerstopperth
-		10. rl0705_margin_fs = rl controller with margin and followerstopperth
+		5. micromodelv2
+		6. mocromodelv2_margin
+		7. rl0719
+		8. rl0719_margin
 
 	Note: Add more tests above as they are available
 	-->
@@ -74,7 +73,7 @@
 		<arg name="hwil" default="$(arg hwil)"/>
         </include>
 	
-	<include file="$(find transfer_pkg)/launch/micromodel.launch" if="$(eval arg('test') == 'micromodel' or arg('test') == 5)">
+	<include file="$(find transfer_pkg)/launch/micromodelv2.launch" if="$(eval arg('test') == 'micromodelv2' or arg('test') == 5)">
                 <arg name="th1" value="$(arg th1)"/>
                 <arg name="th2" value="$(arg th2)"/>
                 <arg name="th3" value="$(arg th3)"/>
@@ -83,9 +82,10 @@
                 <arg name="w3" value="$(arg w3)"/>
 		<arg name="margin" value="$(arg margin)"/>
 		<arg name="hwil" value="$(arg hwil)"/>
+		<arg name="gap_variant" value="$(arg gap_variant)"/>
         </include>
 	
-	<include file="$(find transfer_pkg)/launch/micromodel_margin.launch" if="$(eval arg('test') == 'micromodel_margin' or arg('test') == 6)">
+	<include file="$(find transfer_pkg)/launch/micromodelv2_margin.launch" if="$(eval arg('test') == 'micromodelv2_margin' or arg('test') == 6)">
                 <arg name="th1" value="$(arg th1)"/>
                 <arg name="th2" value="$(arg th2)"/>
                 <arg name="th3" value="$(arg th3)"/>
@@ -94,9 +94,10 @@
                 <arg name="w3" value="$(arg w3)"/>
 		<arg name="margin" value="$(arg margin)"/>
 		<arg name="hwil" value="$(arg hwil)"/>
+		<arg name="gap_variant" value="$(arg gap_variant)"/>
         </include>
 	
-	<include file="$(find transfer_pkg)/launch/rl0705.launch" if="$(eval arg('test') == 'rl0705' or arg('test') == 7)">
+	<include file="$(find transfer_pkg)/launch/rl0719.launch" if="$(eval arg('test') == 'rl0719' or arg('test') == 7)">
                 <arg name="th1" value="$(arg th1)"/>
                 <arg name="th2" value="$(arg th2)"/>
                 <arg name="th3" value="$(arg th3)"/>
@@ -105,32 +106,11 @@
                 <arg name="w3" value="$(arg w3)"/>
 		<arg name="margin" value="$(arg margin)"/>
 		<arg name="hwil" value="$(arg hwil)"/>
-        </include>
-	
-	<include file="$(find transfer_pkg)/launch/rl0705_margin.launch" if="$(eval arg('test') == 'rl0705_margin' or arg('test') == 8)">
-                <arg name="th1" value="$(arg th1)"/>
-                <arg name="th2" value="$(arg th2)"/>
-                <arg name="th3" value="$(arg th3)"/>
-                <arg name="w1" value="$(arg w1)"/>
-                <arg name="w2" value="$(arg w2)"/>
-                <arg name="w3" value="$(arg w3)"/>
-		<arg name="margin" value="$(arg margin)"/>
-		<arg name="hwil" value="$(arg hwil)"/>
-        </include>
-	
-	<include file="$(find transfer_pkg)/launch/rl0705.launch" if="$(eval arg('test') == 'rl0705_fs' or arg('test') == 9)">
-                <arg name="th1" value="$(arg th1)"/>
-                <arg name="th2" value="$(arg th2)"/>
-                <arg name="th3" value="$(arg th3)"/>
-                <arg name="w1" value="$(arg w1)"/>
-                <arg name="w2" value="$(arg w2)"/>
-                <arg name="w3" value="$(arg w3)"/>
-		<arg name="margin" value="$(arg margin)"/>
-		<arg name="hwil" value="$(arg hwil)"/>
+		<arg name="T" value="$(arg T)"/>
 		<arg name="enable_fs" value="true"/>
         </include>
 	
-	<include file="$(find transfer_pkg)/launch/rl0705_margin.launch" if="$(eval arg('test') == 'rl0705_margin_fs' or arg('test') == 10)">
+	<include file="$(find transfer_pkg)/launch/rl0719_margin.launch" if="$(eval arg('test') == 'rl0719_margin' or arg('test') == 8)">
                 <arg name="th1" value="$(arg th1)"/>
                 <arg name="th2" value="$(arg th2)"/>
                 <arg name="th3" value="$(arg th3)"/>
@@ -139,6 +119,7 @@
                 <arg name="w3" value="$(arg w3)"/>
 		<arg name="margin" value="$(arg margin)"/>
 		<arg name="hwil" value="$(arg hwil)"/>
+		<arg name="T" value="$(arg T)"/>
 		<arg name="enable_fs" value="true"/>
         </include>
 	
