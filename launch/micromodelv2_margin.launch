@@ -2,7 +2,7 @@
 
 <launch>
 
-	<arg name="description" default="following_real_vehicle_micromodelv2_without_margin"/>
+	<arg name="description" default="following_real_vehicle_micromodelv2_with_margin"/>
 	
 	<arg name="th1" default="0.4"/>
 	<arg name="th2" default="1.2"/>
@@ -11,7 +11,7 @@
 	<arg name="w2" default="6.0"/>
 	<arg name="w3" default="5.25"/>
 	<arg name="margin" default="30.0"/>
-	<arg name="use_margin" default="false"/>
+	<arg name="use_margin" default="true"/>
 	<arg name="hwil" default="false"/>
 	<arg name='hoffman' default='false'/>
 	<arg name='gap_variant' default='true'/>
