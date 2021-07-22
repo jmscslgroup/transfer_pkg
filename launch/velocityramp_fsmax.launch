@@ -2,7 +2,7 @@
   
 <launch>
 
-	<arg name="description" default="velocity_ramp_followerstopper_timeheadway_nomargin"/>
+	<arg name="description" default="velocity_ramp_followerstopper_max_nomargin"/>
 	<arg name="hwil" default="false"/>
         <arg name="th1" default="0.4"/>
         <arg name="th2" default="1.2"/>
@@ -28,7 +28,7 @@
 	<node pkg="margin" type="margin_node" name="margin_node" output="screen" if="$(arg use_margin)">
 	</node>
 
-	 <node pkg="followerstopperth4rl" type="followerstopperth4rl_node" name="followerstopperth4rl_node" output="screen">
+	 <node pkg="followerstoppermax4rl" type="followerstoppermax4rl_node" name="followerstoppermax4rl_node" output="screen">
                 <remap from="lead_dist" to="effective_lead_dist" if="$(arg use_margin)"/>
         </node>
 	
