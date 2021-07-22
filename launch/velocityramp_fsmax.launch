@@ -36,6 +36,10 @@
                 <remap from="lead_dist" to="effective_lead_dist" if="$(arg use_margin)"/>
         </node>
 	
+<node pkg="velocity_controller" type="velocity_controller_node" name="velocity_controller_node" output="screen" if="$(arg hwil)">
+                <remap from="/vehicle/vel" to="/vel"/>
+        </node>
+	
 	<node pkg="can_to_ros" type ="rosbag_record.sh" name="bashscript2" output="screen" args="$(arg description) $(arg hwil)" />
 
 	<node pkg="transfer_pkg" type="saveparam.py" name="saveparam" output="screen" args="$(arg description) $(arg hwil)"/>
