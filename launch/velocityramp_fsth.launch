@@ -19,6 +19,10 @@
         <param name="/w1" value="$(arg w1)"/>
         <param name="/w2" value="$(arg w2)"/>
         <param name="/w3" value="$(arg w3)"/>
+	
+	<node pkg="can_to_ros" type ="subs_fs" name="subs_fs" output="screen" if="$(arg hwil)"/>
+
+        <node pkg="can_to_ros" type="lead_info" name="lead_info" output="screen" if="$(arg hwil)"/>
 
 
 	<node pkg="velocityramp" type="velocityramp_node" name="velocityramp_node" output="screen">	
