@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  
+<launch>
+
+	<node pkg="velocityramp" type="velocityramp_node" name="velocityramp_node" output="screen">	
+		<remap from="vel_setpoint" to="cmd_vel"/>		i
+	</node>	
+
+
+</launch>
