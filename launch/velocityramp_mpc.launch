@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  
+<launch>
+
+	<arg name="description" default="velocity_ramp"/>
+	<arg name="hwil" default="false"/>
+        <arg name="th1" default="0.4"/>
+        <arg name="th2" default="1.2"/>
+        <arg name="th3" default="1.8"/>
+        <arg name="w1" default="4.5"/>
+        <arg name="w2" default="6.0"/>
+        <arg name="w3" default="5.25"/>
+	<arg name="margin" default="30.0"/>
+        <arg name="use_margin" default="false"/>
+	
+	<param name="/th1" value="$(arg th1)"/>
+        <param name="/th2" value="$(arg th2)"/>
+        <param name="/th3" value="$(arg th3)"/>
+        <param name="/w1" value="$(arg w1)"/>
+        <param name="/w2" value="$(arg w2)"/>
+        <param name="/w3" value="$(arg w3)"/>
+	
+	<node pkg="can_to_ros" type ="subs_fs" name="subs_fs" output="screen" if="$(arg hwil)"/>
+
+        <node pkg="can_to_ros" type="lead_info" name="lead_info" output="screen" if="$(arg hwil)"/>
+
+
+	<node pkg="velocityramp" type="velocityramp_node" name="velocityramp_node" output="screen">	
+		<remap from="vel_setpoint" to="cmd_vel"/>		i
+	</node>	
+	
+	<node pkg="margin" type="margin_node" name="margin_node" output="screen" if="$(arg use_margin)">
+	</node>
+
+	
+	<node pkg="velocity_controller" type="velocity_controller_node" name="velocity_controller_node" output="screen" if="$(arg hwil)">
+                <remap from="/vehicle/vel" to="/vel"/>
+                <remap from="/ghost/vel" to="/cmd_vel"/>
+        </node>
+	
+	<node pkg="can_to_ros" type ="rosbag_record.sh" name="bashscript2" output="screen" args="$(arg description) $(arg hwil)" />
+
+	<node pkg="transfer_pkg" type="saveparam.py" name="saveparam" output="screen" args="$(arg description) $(arg hwil)"/>
+
+
+	
+
+
+</launch>
