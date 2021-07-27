@@ -70,7 +70,7 @@
 	
 	<node pkg="hoffmansubsystem" type="hoffmansubsystem_node" name="hoffmansubsystem_ego" output="screen" if="$(arg hoffman)"/>
 
-	<node pkg="velocity_controller" type="velocity_controller_node" name="velocity_controller_node" output="screen" if="$(eval readonly and not hwil)">	
+	<node pkg="velocity_controller" type="velocity_controller_node" name="velocity_controller_node" output="screen" if="$(eval not readonly and hwil)">	
 		<remap from="/vehicle/vel" to="/vel"/>	
 	</node>
 	
