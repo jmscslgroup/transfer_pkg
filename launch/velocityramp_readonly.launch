@@ -25,6 +25,7 @@
 
         <node pkg="can_to_ros" type="lead_info" name="lead_info" output="screen" if="$(arg hwil)"/>
 
+	<node pkg="can_to_ros" type="simple_mini_car_from_lead_distance" name="simple_mini_car_from_lead_distance" output="screen" if="$(arg hwil)"/>
 
 	<node pkg="velocityramp" type="velocityramp_node" name="velocityramp_node" output="screen">	
 		<remap from="vel_setpoint" to="cmd_vel"/>		i
