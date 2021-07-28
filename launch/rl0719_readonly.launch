@@ -45,6 +45,11 @@
 	<param name="/w2" value="$(arg w2)"/>
 	<param name="/w3" value="$(arg w3)"/>
 	
+	<param name="/readonly" value="$(arg readonly)"/>
+	<param name="/hwil" value="$(arg hwil)"/>
+	<param name="/use_margin" value="$(arg use_margin)"/>
+	<param name="/enable_fs" value="$(arg enable_fs)"/>
+	
 	<node pkg="can_to_ros" type ="subs_fs" name="subs_fs" output="screen" if="$(arg hwil)"/> 
 
 	<node pkg="can_to_ros" type="lead_info" name="lead_info" output="screen" if="$(arg hwil)"/>
