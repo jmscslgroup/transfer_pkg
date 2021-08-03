@@ -15,6 +15,7 @@
 	<arg name="hwil" default="true"/>
 	<arg name='hoffman' default='false'/>
 	<arg name='gap_variant' default='true'/>
+	<arg name='freeflow' default='false'/>
 	<arg name='readonly' default='true'/>
 
 	<param name="/th1" value="$(arg th1)"/>
@@ -24,6 +25,7 @@
 	<param name="/w2" value="$(arg w2)"/>
 	<param name="/w3" value="$(arg w3)"/>
 	<param name="/gap_variant" value="$(arg gap_variant)"/>
+	<param name="/freeflow" value="$(arg freeflow)"/>
 	<param name="/margin" value="$(arg margin)"/>
 	<param name="description" value="$(arg description)"/>
 	
