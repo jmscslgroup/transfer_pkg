@@ -8,7 +8,7 @@
 	<arg name="use_margin" default="false"/>
 	<arg name="SPEED_SCALE" default="1.0"/>	
 	<arg name="HEADWAY_SCALE" default="1.0"/>
-	<arg name="enable_fs" default="false"/>
+	<arg name="enable_fs" default="true"/>
 	<arg name="hwil" default="false"/>
 	<arg name="th1" default="0.4"/>
 	<arg name="th2" default="1.2"/>
