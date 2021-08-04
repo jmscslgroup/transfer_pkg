@@ -8,8 +8,8 @@
 	<arg name="th2" default="1.2"/>
 	<arg name="th3" default="1.8"/>	
 	<arg name="w1" default="4.5"/>
-	<arg name="w2" default="6.0"/>
-	<arg name="w3" default="5.25"/>
+	<arg name="w3" default="6.0"/>
+	<arg name="w2" default="5.25"/>
 	<arg name="margin" default="30.0"/>
 	<arg name="use_margin" default="false"/>
 	<arg name="hwil" default="true"/>
