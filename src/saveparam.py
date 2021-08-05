@@ -42,10 +42,15 @@ def main(argv):
     host = socket.gethostname()
     
     home = expanduser("~")
+    import os
 
     if argv[1] == "false":
+        if not os.path.exists(home +'/.ros/' + parentfolder):
+            os.makedirs(home +'/.ros/' + parentfolder)
         filename = home  +'/.ros/' + parentfolder + filename
     else:
+        if not os.path.exists('/var/panda/CyverseData/JmscslgroupData/bagfiles/' + parentfolder):
+            os.makedirs('/var/panda/CyverseData/JmscslgroupData/bagfiles/' + parentfolder)
         filename = '/var/panda/CyverseData/JmscslgroupData/bagfiles/' + parentfolder + filename
     
     print(filename)
