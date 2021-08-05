@@ -2,7 +2,7 @@
 
 <launch>
 
-	<arg name="description" default="following_real_vehicle_rl0719"/>
+	<arg name="description" default="following_real_vehicle_rl0805_with_FSTHv1"/>
 	
 	<arg name="margin" default="30.0"/>
 	<arg name="use_margin" default="false"/>
