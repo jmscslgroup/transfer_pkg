@@ -23,8 +23,10 @@
 	<arg name="T" default="0.6"/>
 	<arg name='hoffman' default='false'/>
 	<arg name='readonly' default='true'/>
+	<arg name='controllers' default='19Jul21_RL_accel_output/19Jul21_RL_accel_output.onnx'/>
 	
-	<param name="model" type="string" value="$(find onnx2ros)/../controllers/19Jul21_RL_accel_output/19Jul21_RL_accel_output.onnx"/>
+	
+	<param name="model" type="string" value="$(find onnx2ros)/../controllers/$(arg controllers)"/>
         <param name="mode" type="string" value="prompt"/>
 	<param name="/margin" value="$(arg margin)"/>
 	<param name="description" value="$(arg description)_enable_$(arg enable_fs)"/>
