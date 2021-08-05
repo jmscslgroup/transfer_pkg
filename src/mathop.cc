@@ -30,6 +30,14 @@ AddGeometryMsgComp::AddGeometryMsgComp(ros::NodeHandle *nh): MathOp(nh)
 	msg2.angular.y = 0;
 	msg2.angular.z = 0;
 
+	ROS_INFO_STREAM("Input Topic 1 is "<< topic_in1);
+	ROS_INFO_STREAM("Input Topic 2 is "<< topic_in2);
+	ROS_INFO_STREAM("Output Topic is "<< topic_out);
+	
+	ROS_INFO_STREAM("Input Component 1 is "<< component_in1);
+	ROS_INFO_STREAM("Input Component 2 is "<< component_in2);
+	ROS_INFO_STREAM("Output Component is "<< component_out);
+
 }
 
 void AddGeometryMsgComp::callback_1(const geometry_msgs::Twist& m) {msg1 = m;}

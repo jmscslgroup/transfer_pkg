@@ -4,15 +4,30 @@
 
 	<arg name="leader" default="leader"/>
 	<arg name="bagfile" default="start_at_0mph.bag"/>
-  
+ 	<arg name="hwilbag" default="false"/> <!-- pass true when you want to specify bag file that was collected from VanderTest --> 
 
 	<arg name='hoffman' default='true'/>
+	
+	<param name="/$(arg leader)/topic_in1" type="string" value="/hwil_vel"/>
+	<param name="/$(arg leader)/topic_in2" type="string" value="/hwil_rel_vel"/>
+	<param name="/$(arg leader)/topic_out" type="string" value="/$(arg leader)/cmd_vel" unless="$(arg hoffman)"/>
+	<param name="/$(arg leader)/topic_out" type="string" value="/$(arg leader)/cmd_control_vel" if="$(arg hoffman)"/>
+	
+	<param name="/$(arg leader)/component_in1" type="string" value="linear.x"/>
+	<param name="/$(arg leader)/component_in2" type="string" value="linear.z"/>
+	<param name="/$(arg leader)/component_out" type="string" value="linear.x"/>
 
 	<group ns="$(arg leader)">
 
-		<node pkg="rosbag" type="play" name="player" output="screen" args="$(find transfer_pkg)/launch/$(arg bagfile) --topics /ghost/vel">
-			<remap from="/ghost/vel" to="cmd_vel" unless="$(arg hoffman)"/>
-			<remap from="/ghost/vel" to="cmd_control_vel" if="$(arg hoffman)"/>
+		<node pkg="rosbag" type="play" name="player" output="screen" args="$(find transfer_pkg)/launch/$(arg bagfile) --topics /ghost/vel" unless="$(arg hwilbag)">
+                        <remap from="/ghost/vel" to="cmd_vel" unless="$(arg hoffman)"/>
+                        <remap from="/ghost/vel" to="cmd_control_vel" if="$(arg hoffman)"/>
+                </node>
+
+		<node pkg="rosbag" type="play" name="player" output="screen" args="$(find transfer_pkg)/launch/$(arg bagfile) --topics /rel_vel /vel /vel:=/hwil_vel /rel_vel:=/hwil_rel_vel" if="$(arg hwilbag)">
+                </node>
+		
+		<node pkg="transfer_pkg" type="add_geometrymsgs" name="add_geometrymsgs" output="screen" if ="$(arg hwilbag)">
 		</node>
 
                 <node pkg="hoffmansubsystem" type="hoffmansubsystem_node" name="hoffmansubsystem_$(arg leader)" output="screen" if="$(arg hoffman)"/>

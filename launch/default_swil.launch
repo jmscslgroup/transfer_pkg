@@ -4,13 +4,15 @@
 	<arg name="bagfile" default="start_at_0mph.bag"/>
 	<arg name='hoffman' default='true'/>
 	<arg name='leader_pos' default='30.0'/>
-	
+	<arg name="hwilbag" default="false"/>
+
 	<include file="$(find steer)/launch/leader_ego.launch">
 		<arg name="leader_pos" value="$(arg leader_pos)"/>	
 	</include>
 	
 	<include file="$(find transfer_pkg)/launch/swil_leader.launch">
-                <arg name="bagfile" value="$(arg bagfile)"/>
+		<arg name="hwilbag" value="$(arg hwilbag)"/>
+		<arg name="bagfile" value="$(arg bagfile)"/>
                 <arg name="hoffman" value="$(arg hoffman)"/>
 	</include>
 
