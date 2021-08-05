@@ -116,10 +116,11 @@ catkin_package(
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
-include_directories(
-# include
-  ${catkin_INCLUDE_DIRS}
-)
+include_directories( include ${catkin_INCLUDE_DIRS} )
+
+add_executable(add_geometrymsgs src/addgeom.cc src/mathop.cc)
+target_link_libraries(add_geometrymsgs ${catkin_LIBRARIES})
+
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
