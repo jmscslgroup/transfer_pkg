@@ -24,7 +24,7 @@ sudo make
 ```
 
 Testing controllers in SWIL requires Simulated vehicles. We use Steer package for vehicle simulation. In addition to that, we will need a few more packages.
-Clone following repositories in the `src` directory of your catkin workspace. These packages are also common for HWIL testing. For this instruction, I am assuming, your catkin workspace is the directory `~/catkin_ws` but you should modify the instruction as per your situation.
+Clone following repositories in the `src` directory of your catkin workspace. For this instruction, I am assuming, your catkin workspace is the directory `~/catkin_ws` but you should modify the instruction as per your situation.
 
 
 ```
@@ -42,8 +42,32 @@ git clone https://github.com/jmscslgroup/integrator
 git clone https://github.com/jmscslgroup/margin
 git clone https://github.com/jmscslgroup/can_to_ros
 git clone https://github.com/jmscslgroup/transfer_pkg
+git clone http://github.com/cirCLES-consortium/algos-stack/
+```
+
+Change the git branch of `algos-stack` repository to `setpoint_rahul` before doing `catkin_make`.
+
+However, if you are testing controller in HWIL testing, folowing packages are required:
 
 ```
+cd ~/catkin_ws/src
+git clone https://github.com/jmscslgroup/followerstoppermax4rl
+git clone https://github.com/jmscslgroup/followerstoppermax
+git clone https://github.com/jmscslgroup/followerstopperth
+git clone https://github.com/jmscslgroup/micromodel
+git clone https://github.com/jmscslgroup/trajectory_07_05_2021_real
+git clone https://github.com/jmscslgroup/velocity_controller
+git clone https://github.com/jmscslgroup/integrator
+git clone https://github.com/jmscslgroup/margin
+git clone https://github.com/jmscslgroup/can_to_ros
+git clone https://github.com/jmscslgroup/transfer_pkg
+git clone https://github.com/jmscslgroup/followerstopperth4rl
+git clone https://github.com/jmscslgroup/followerstoppermax4rl
+git clone http://github.com/cirCLES-consortium/algos-stack/
+
+```
+Change the git branch of `algos-stack` repository to `setpoint_rahul` before doing `catkin_make`.
+
 
 Once you clone your package you need to compile them. If you already have them cloned, do the `git pull` to make sure you have the lates version of each packages.
 
