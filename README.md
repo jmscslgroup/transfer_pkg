@@ -51,7 +51,6 @@ However, if you are testing controller in HWIL testing, folowing packages are re
 
 ```
 cd ~/catkin_ws/src
-git clone https://github.com/jmscslgroup/followerstoppermax4rl
 git clone https://github.com/jmscslgroup/followerstoppermax
 git clone https://github.com/jmscslgroup/followerstopperth
 git clone https://github.com/jmscslgroup/micromodel
