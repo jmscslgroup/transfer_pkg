@@ -12,7 +12,6 @@ import datetime
 import socket
 from os.path import expanduser
 import rospkg
-import os
 
 class saveparam:
     def __init__(self, ns):
@@ -42,6 +41,7 @@ def main(argv):
     packages = ['onnx2ros', 'can_to_ros', 'velocity_controller', 'micromodel', 'margin', 'transfer_pkg']
     for pkg in packages:
         pkg_path = rospack.get_path(pkg)
+        import os
         os.system("cd {} && git remote -v > /tmp/tmp.txt".format(pkg_path))
         S = open('/tmp/tmp.txt', 'r').read()
         param_list.append('{}_url'.format(pkg))
