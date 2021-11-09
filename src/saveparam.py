@@ -54,7 +54,7 @@ def main(argv):
 
         os.system("cd {} && git branch --show-current > /tmp/tmp.txt".format(pkg_path))
         S = open('/tmp/tmp.txt', 'r').read()
-        param_list.append('{}_branch'.format(pkg))s
+        param_list.append('{}_branch'.format(pkg))
         val_list.append(S)
 
 
