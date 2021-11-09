@@ -57,6 +57,21 @@ def main(argv):
         param_list.append('{}_branch'.format(pkg))
         val_list.append(S)
 
+    import os
+    libpanda_path = '/home/circles/libpanda'
+    os.system("cd {} && git remote -v > /tmp/tmp.txt".format(libpanda_path))
+    S = open('/tmp/tmp.txt', 'r').read()
+    param_list.append('{}_url'.format('libpanda'))
+    val_list.append(S)
+    os.system("cd {} && git log -n 1 > /tmp/tmp.txt".format(libpanda_path))
+    S = open('/tmp/tmp.txt', 'r').read()
+    param_list.append('{}_commithash'.format('libpanda'))
+    val_list.append(S)
+    os.system("cd {} && git branch --show-current > /tmp/tmp.txt".format(libpanda_path))
+    S = open('/tmp/tmp.txt', 'r').read()
+    param_list.append('{}_branch'.format('libpanda'))
+    val_list.append(S)
+
 
     for p in params:
         param_list.append(p)
