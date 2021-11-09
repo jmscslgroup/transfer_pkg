@@ -2,7 +2,7 @@
 
 <launch>
 
-	<arg name="description" default="Micromodel Controller November"/>
+	<arg name="description" default="Micromodel Controller Dated 10 27 2021"/>
 	
 	<arg name="margin" default="30.0"/>
 	<arg name="use_margin" default="false"/>
@@ -27,6 +27,7 @@
 	<param name="/readonly" value="$(arg readonly)"/>
 	<param name="/hwil" value="$(arg hwil)"/>
 	<param name="/use_margin" value="$(arg use_margin)"/>
+	<param name="/margin" value="$(arg margin)"/>
 	
 	<node pkg="can_to_ros" type ="subs_fs" name="subs_fs" output="screen" if="$(arg hwil)"/> 
 
@@ -53,9 +54,9 @@
 		<remap from="/cmd_accel" to="/cmd_accel_null"/>
 	</node>
 	
-	<node pkg="can_to_ros" type ="rosbag_record.sh" name="bashscript2" output="screen" args="$(arg description)_enable_$(arg enable_fs) $(arg hwil)" /> 
+	<node pkg="can_to_ros" type ="rosbag_record.sh" name="bashscript2" output="screen" args="$(arg description) $(arg hwil)" /> 
 
-	<node pkg="transfer_pkg" type="saveparam.py" name="saveparam" output="screen" args="$(arg description)_enable_$(arg enable_fs) $(arg hwil)">
+	<node pkg="transfer_pkg" type="saveparam.py" name="saveparam" output="screen" args="$(arg description) $(arg hwil)">
 	</node>
 	
 

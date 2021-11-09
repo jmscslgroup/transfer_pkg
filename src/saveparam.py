@@ -58,7 +58,6 @@ def main(argv):
         val_list.append(S)
 
 
-
     for p in params:
         param_list.append(p)
         val = rospy.get_param(p)
