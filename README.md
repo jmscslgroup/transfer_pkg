@@ -21,6 +21,10 @@ cd build
 sudo cmake ..
 sudo make
 
+
+cd /var
+sudo mkdir panda
+sudo chown -R [username] panda
 ```
 
 Testing controllers in SWIL requires Simulated vehicles. We use Steer package for vehicle simulation. In addition to that, we will need a few more packages.
@@ -74,7 +78,7 @@ Once you clone your package you need to compile them. If you already have them c
 cd ~/catkin_ws/
 catkin_make
 ```
-
+(may need to specify `catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python3`)
 
 # Testing controllers in SWIL
 There are a number of controllers that can be tested. The available controllers to be tested are enumerated below. They will be updated as we have more controllers to be tested:
@@ -97,6 +101,14 @@ _**Terminal 1:**_
 ```
 roslaunch transfer_pkg default_swil.launch bagfile:=start_at_0mph.bag
 ```
+
+Python package installations that may be necessary. Can be done in conda environment:
+```
+pip install pyyaml
+pip install py3rosmsgs
+pip install rospkg
+```
+
 `default_swil.launch` starts ROS-Gazebo simulation with two vehicle separated at 30 m (minus the lenght of vehicle) apart. A LiDAR mounted on the front bumper of the ego car measures its current distance from the leader vehicle at the rate of 20 Hz. Bag files are used to impart velocity profile to the leader car. The list of available bag files are available at https://github.com/jmscslgroup/transfer_pkg. Only the filename of the bag file needs to be supplied and **NOT** the full path. If you need to add more bagfiles, place them in the launch subdirectory of `transfer_pkg`. 
 
 _**Terminal 2:**_
