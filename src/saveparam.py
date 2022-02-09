@@ -13,6 +13,7 @@ import socket
 from os.path import expanduser
 import rospkg
 
+
 class saveparam:
     def __init__(self, ns):
         """
@@ -37,6 +38,7 @@ def main(argv):
     can_to_ros_path = rospack.get_path('can_to_ros')
     velocity_controller_path = rospack.get_path('velocity_controller')
 
+    host = socket.gethostname()
 
     packages = ['onnx2ros', 'can_to_ros', 'velocity_controller', 'micromodel', 'margin', 'transfer_pkg']
     for pkg in packages:
@@ -58,7 +60,11 @@ def main(argv):
         val_list.append(S)
 
     import os
+
     libpanda_path = '/home/circles/libpanda'
+    if host in ['refulgent', 'ivory', 'starfire']:
+       libpanda_path = '/opt/libpanda'
+
     os.system("cd {} && git remote -v > /tmp/tmp.txt".format(libpanda_path))
     S = open('/tmp/tmp.txt', 'r').read()
     param_list.append('{}_url'.format('libpanda'))
@@ -79,7 +85,7 @@ def main(argv):
         val_list.append(val)
 
     dt_object = datetime.datetime.fromtimestamp(time.time())
-    filename  = dt_object.strftime('%Y_%m_%d_%H_%M_%S')  + '_rosparams_' + argv[0] + '.csv'
+    filename  = dt_object.strftime('%Y_%m_%d_%H_%M_%S')  + '_' + argv[0] + '.csv'
     parentfolder = dt_object.strftime('%Y_%m_%d') + '/'
     host = socket.gethostname()
 
