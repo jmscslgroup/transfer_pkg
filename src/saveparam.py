@@ -42,27 +42,32 @@ def main(argv):
 
     packages = ['onnx2ros', 'can_to_ros', 'velocity_controller', 'micromodel', 'margin', 'transfer_pkg']
     for pkg in packages:
-        pkg_path = rospack.get_path(pkg)
-        import os
-        os.system("cd {} && git remote -v > /tmp/tmp.txt".format(pkg_path))
-        S = open('/tmp/tmp.txt', 'r').read()
-        param_list.append('{}_url'.format(pkg))
-        val_list.append(S)
 
-        os.system("cd {} && git log -n 1 > /tmp/tmp.txt".format(pkg_path))
-        S = open('/tmp/tmp.txt', 'r').read()
-        param_list.append('{}_commithash'.format(pkg))
-        val_list.append(S)
+        try:
+            pkg_path = rospack.get_path(pkg)
+            import os
+            os.system("cd {} && git remote -v > /tmp/tmp.txt".format(pkg_path))
+            S = open('/tmp/tmp.txt', 'r').read()
+            param_list.append('{}_url'.format(pkg))
+            val_list.append(S)
 
-        os.system("cd {} && git branch --show-current > /tmp/tmp.txt".format(pkg_path))
-        S = open('/tmp/tmp.txt', 'r').read()
-        param_list.append('{}_branch'.format(pkg))
-        val_list.append(S)
+            os.system("cd {} && git log -n 1 > /tmp/tmp.txt".format(pkg_path))
+            S = open('/tmp/tmp.txt', 'r').read()
+            param_list.append('{}_commithash'.format(pkg))
+            val_list.append(S)
+
+            os.system("cd {} && git branch --show-current > /tmp/tmp.txt".format(pkg_path))
+            S = open('/tmp/tmp.txt', 'r').read()
+            param_list.append('{}_branch'.format(pkg))
+            val_list.append(S)
+        except rospkg.ResourceNotFound as e:
+            print("{} package not available ... skipping.")
 
     import os
 
     libpanda_path = '/home/circles/libpanda'
-    if host in ['refulgent', 'ivory', 'starfire']:
+    #if host in ['refulgent', 'ivory', 'starfire']:
+    if not os.path.exists('/home/circles/libpanda'):
        libpanda_path = '/opt/libpanda'
 
     os.system("cd {} && git remote -v > /tmp/tmp.txt".format(libpanda_path))
