@@ -7,11 +7,12 @@
         <arg name="th2" default="1.2"/>
         <arg name="th3" default="1.8"/>
         <arg name="w1" default="4.5"/>
-        <arg name="w2" default="6.0"/>
-        <arg name="w3" default="5.25"/>
+        <arg name="w2" default="5.25"/>
+        <arg name="w3" default="6.0"/>
         <arg name="margin" default="30.0"/>
         <arg name="hwil" default="false"/>
-        <arg name="T" default="0.6"/>	
+        <arg name="T" default="0.6"/>
+        <arg name="hoffman" default="false"/>
 	<arg name='gap_variant' default='true'/>
 
 	<arg name="test" default="followerstopperth"/>
@@ -21,7 +22,7 @@
 		2. followerstopperth_margin
 		3. followerstoppermax
 		4. followerstoppermax_margin
-		5. micromodelv2
+		5. micromodel (Updated Nov 26, 2021)
 		6. mocromodelv2_margin
 		7. rl0719
 		8. rl0719_margin
@@ -29,99 +30,101 @@
 	Note: Add more tests above as they are available
 	-->
 
-	<include file="$(find transfer_pkg)/launch/followerstopperth.launch" if="$(eval arg('test') == 'followerstopperth' or arg('test') == 1)">
-                <arg name="th1" value="$(arg th1)"/>
-                <arg name="th2" value="$(arg th2)"/>
-                <arg name="th3" value="$(arg th3)"/>
-                <arg name="w1" value="$(arg w1)"/>
-                <arg name="w2" value="$(arg w2)"/>
-                <arg name="w3" value="$(arg w3)"/>
-		<arg name="margin" value="$(arg margin)"/>
-		<arg name="hwil" value="$(arg hwil)"/>
-        </include>
+    <include file="$(find transfer_pkg)/launch/followerstopperth.launch" if="$(eval arg('test') == 'followerstopperth' or arg('test') == 1)">
+        <arg name="th1" value="$(arg th1)"/>
+        <arg name="th2" value="$(arg th2)"/>
+        <arg name="th3" value="$(arg th3)"/>
+        <arg name="w1" value="$(arg w1)"/>
+        <arg name="w2" value="$(arg w2)"/>
+        <arg name="w3" value="$(arg w3)"/>
+        <arg name="margin" value="$(arg margin)"/>
+        <arg name="hwil" value="$(arg hwil)"/>
+    </include>
 	
-	<include file="$(find transfer_pkg)/launch/followerstopperth_margin.launch" if="$(eval arg('test') == 'followerstopperth_margin' or arg('test') == 2)">
-                <arg name="th1" value="$(arg th1)"/>
-                <arg name="th2" value="$(arg th2)"/>
-                <arg name="th3" value="$(arg th3)"/>
-                <arg name="w1" value="$(arg w1)"/>
-                <arg name="w2" value="$(arg w2)"/>
-                <arg name="w3" value="$(arg w3)"/>
-		<arg name="margin" value="$(arg margin)"/>
-		<arg name="hwil" value="$(arg hwil)"/>
-        </include>
+    <include file="$(find transfer_pkg)/launch/followerstopperth_margin.launch" if="$(eval arg('test') == 'followerstopperth_margin' or arg('test') == 2)">
+        <arg name="th1" value="$(arg th1)"/>
+        <arg name="th2" value="$(arg th2)"/>
+        <arg name="th3" value="$(arg th3)"/>
+        <arg name="w1" value="$(arg w1)"/>
+        <arg name="w2" value="$(arg w2)"/>
+        <arg name="w3" value="$(arg w3)"/>
+        <arg name="margin" value="$(arg margin)"/>
+        <arg name="hwil" value="$(arg hwil)"/>
+    </include>
 	
-	<include file="$(find transfer_pkg)/launch/followerstoppermax.launch" if="$(eval arg('test') == 'followerstoppermax' or arg('test') == 3)">
-                <arg name="th1" value="$(arg th1)"/>
-                <arg name="th2" value="$(arg th2)"/>
-                <arg name="th3" value="$(arg th3)"/>
-                <arg name="w1" value="$(arg w1)"/>
-                <arg name="w2" value="$(arg w2)"/>
-                <arg name="w3" value="$(arg w3)"/>
-		<arg name="margin" value="$(arg margin)"/>
-		<arg name="hwil" value="$(arg hwil)"/>
-        </include>
+    <include file="$(find transfer_pkg)/launch/followerstoppermax.launch" if="$(eval arg('test') == 'followerstoppermax' or arg('test') == 3)">
+        <arg name="th1" value="$(arg th1)"/>
+        <arg name="th2" value="$(arg th2)"/>
+        <arg name="th3" value="$(arg th3)"/>
+        <arg name="w1" value="$(arg w1)"/>
+        <arg name="w2" value="$(arg w2)"/>
+        <arg name="w3" value="$(arg w3)"/>
+        <arg name="margin" value="$(arg margin)"/>
+        <arg name="hwil" value="$(arg hwil)"/>
+    </include>
 	
-	<include file="$(find transfer_pkg)/launch/followerstoppermax_margin.launch" if="$(eval arg('test') == 'followerstoppermax_margin' or arg('test') == 4)">
-                <arg name="th1" value="$(arg th1)"/>
-                <arg name="th2" value="$(arg th2)"/>
-                <arg name="th3" value="$(arg th3)"/>
-                <arg name="w1" value="$(arg w1)"/>
-                <arg name="w2" value="$(arg w2)"/>
-                <arg name="w3" value="$(arg w3)"/>
-		<arg name="margin" default="$(arg margin)"/>
-		<arg name="hwil" default="$(arg hwil)"/>
-        </include>
+    <include file="$(find transfer_pkg)/launch/followerstoppermax_margin.launch" if="$(eval arg('test') == 'followerstoppermax_margin' or arg('test') == 4)">
+        <arg name="th1" value="$(arg th1)"/>
+        <arg name="th2" value="$(arg th2)"/>
+        <arg name="th3" value="$(arg th3)"/>
+        <arg name="w1" value="$(arg w1)"/>
+        <arg name="w2" value="$(arg w2)"/>
+        <arg name="w3" value="$(arg w3)"/>
+        <arg name="margin" default="$(arg margin)"/>
+        <arg name="hwil" default="$(arg hwil)"/>
+    </include>
 	
-	<include file="$(find transfer_pkg)/launch/micromodelv2.launch" if="$(eval arg('test') == 'micromodelv2' or arg('test') == 5)">
-                <arg name="th1" value="$(arg th1)"/>
-                <arg name="th2" value="$(arg th2)"/>
-                <arg name="th3" value="$(arg th3)"/>
-                <arg name="w1" value="$(arg w1)"/>
-                <arg name="w2" value="$(arg w2)"/>
-                <arg name="w3" value="$(arg w3)"/>
+    <include file="$(find transfer_pkg)/launch/micromodel_readonly.launch" if="$(eval arg('test') == 'micromodel' or arg('test') == 5)">
+        <arg name="th1" value="$(arg th1)"/>
+        <arg name="th2" value="$(arg th2)"/>
+        <arg name="th3" value="$(arg th3)"/>
+        <arg name="w1" value="$(arg w1)"/>
+        <arg name="w2" value="$(arg w2)"/>
+        <arg name="w3" value="$(arg w3)"/>
+        <arg name="readonly" value="false"/>
 		<arg name="margin" value="$(arg margin)"/>
-		<arg name="hwil" value="$(arg hwil)"/>
-		<arg name="gap_variant" value="$(arg gap_variant)"/>
-        </include>
+        <arg name="use_margin" value="false"/>
+        <arg name="hwil" value="$(arg hwil)"/>
+        <arg name="hoffman" value="$(arg hoffman)"/>
+    </include>
 	
-	<include file="$(find transfer_pkg)/launch/micromodelv2_margin.launch" if="$(eval arg('test') == 'micromodelv2_margin' or arg('test') == 6)">
-                <arg name="th1" value="$(arg th1)"/>
-                <arg name="th2" value="$(arg th2)"/>
-                <arg name="th3" value="$(arg th3)"/>
-                <arg name="w1" value="$(arg w1)"/>
-                <arg name="w2" value="$(arg w2)"/>
-                <arg name="w3" value="$(arg w3)"/>
-		<arg name="margin" value="$(arg margin)"/>
-		<arg name="hwil" value="$(arg hwil)"/>
-		<arg name="gap_variant" value="$(arg gap_variant)"/>
-        </include>
+    <include file="$(find transfer_pkg)/launch/micromodelv2_margin.launch" if="$(eval arg('test') == 'micromodelv2_margin' or arg('test') == 6)">
+        <arg name="th1" value="$(arg th1)"/>
+        <arg name="th2" value="$(arg th2)"/>
+        <arg name="th3" value="$(arg th3)"/>
+        <arg name="w1" value="$(arg w1)"/>
+        <arg name="w2" value="$(arg w2)"/>
+        <arg name="w3" value="$(arg w3)"/>
+        <arg name="margin" value="$(arg margin)"/>
+        <arg name="hwil" value="$(arg hwil)"/>
+        <arg name="gap_variant" value="$(arg gap_variant)"/>
+    </include>
 	
 	<include file="$(find transfer_pkg)/launch/rl0719.launch" if="$(eval arg('test') == 'rl0719' or arg('test') == 7)">
-                <arg name="th1" value="$(arg th1)"/>
-                <arg name="th2" value="$(arg th2)"/>
-                <arg name="th3" value="$(arg th3)"/>
-                <arg name="w1" value="$(arg w1)"/>
-                <arg name="w2" value="$(arg w2)"/>
-                <arg name="w3" value="$(arg w3)"/>
-		<arg name="margin" value="$(arg margin)"/>
-		<arg name="hwil" value="$(arg hwil)"/>
-		<arg name="T" value="$(arg T)"/>
-		<arg name="enable_fs" value="true"/>
-        </include>
+        <arg name="th1" value="$(arg th1)"/>
+        <arg name="th2" value="$(arg th2)"/>
+        <arg name="th3" value="$(arg th3)"/>
+        <arg name="w1" value="$(arg w1)"/>
+        <arg name="w2" value="$(arg w2)"/>
+        <arg name="w3" value="$(arg w3)"/>
+        <arg name="margin" value="$(arg margin)"/>
+        <arg name="hwil" value="$(arg hwil)"/>
+        <arg name="T" value="$(arg T)"/>
+        <arg name="enable_fs" value="true"/>
+    </include>
 	
-	<include file="$(find transfer_pkg)/launch/rl0719_margin.launch" if="$(eval arg('test') == 'rl0719_margin' or arg('test') == 8)">
-                <arg name="th1" value="$(arg th1)"/>
-                <arg name="th2" value="$(arg th2)"/>
-                <arg name="th3" value="$(arg th3)"/>
-                <arg name="w1" value="$(arg w1)"/>
-                <arg name="w2" value="$(arg w2)"/>
-                <arg name="w3" value="$(arg w3)"/>
-		<arg name="margin" value="$(arg margin)"/>
-		<arg name="hwil" value="$(arg hwil)"/>
-		<arg name="T" value="$(arg T)"/>
-		<arg name="enable_fs" value="true"/>
-        </include>
+    <include file="$(find transfer_pkg)/launch/rl0719_margin.launch" if="$(eval arg('test') == 'rl0719_margin' or arg('test') == 8)">
+        <arg name="th1" value="$(arg th1)"/>
+        <arg name="th2" value="$(arg th2)"/>
+        <arg name="th3" value="$(arg th3)"/>
+        <arg name="w1" value="$(arg w1)"/>
+        <arg name="w2" value="$(arg w2)"/>
+        <arg name="w3" value="$(arg w3)"/>
+        <arg name="margin" value="$(arg margin)"/>
+        <arg name="hwil" value="$(arg hwil)"/>
+        <arg name="T" value="$(arg T)"/>
+        <arg name="enable_fs" value="true"/>
+    </include>
 	
 
 </launch>
