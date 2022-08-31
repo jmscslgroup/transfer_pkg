@@ -21,7 +21,7 @@
 	<node pkg="can_to_ros" type="lead_info" name="lead_info" output="screen" if="$(arg hwil)"/>
 	<node pkg="can_to_ros" type="simple_mini_car_from_lead_distance" name="simple_mini_car_from_lead_distance" output="screen" if="$(arg hwil)"/>
 
-	<node pkg="acc_accel" type="acc_accel_node" name="acc_accel_node" output="screen">
+	<node pkg="acc_settings" type="acc_settings_node" name="acc_settings_node" output="screen">
     </node>	
 
 	<node pkg="velocity_controller" type="velocity_controller_node" name="velocity_controller_node" output="screen" if="$(eval not readonly and hwil)">	

@@ -13,7 +13,7 @@
 <include file="$(find can_to_ros)launch/safety_checks.launch" />
 
 
-<include file="$(find transfer_pkg)/launch/acc_accel_readonly.launch">
+<include file="$(find transfer_pkg)/launch/acc_settings_readonly.launch">
     <arg name="hwil" value="true"/>
     <arg name="readonly" value="false"/>
 </include>
